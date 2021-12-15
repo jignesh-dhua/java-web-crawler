@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,6 +20,8 @@ public class App {
 
     private Set<String> links = new HashSet<>();
 
+    public static final BlockingQueue<String> queue = new ArrayBlockingQueue<>(1024);
+    
     private Crawler crawler = new Crawler();
 
     public void getPageLinks(String URL) {

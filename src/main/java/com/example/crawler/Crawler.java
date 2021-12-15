@@ -12,11 +12,11 @@ import org.jsoup.select.Elements;
 
 public class Crawler implements Runnable{
 
-    protected BlockingQueue<String> queue = null;
+    // protected BlockingQueue<String> queue = null;
 
-    public Crawler(BlockingQueue<String> queue) {
-        this.queue = queue;
-    }
+    // public Crawler(BlockingQueue<String> queue) {
+    //     this.queue = queue;
+    // }
 
     public List<String> crawl(String url) throws IOException {
 
@@ -38,12 +38,12 @@ public class Crawler implements Runnable{
     public void run() {
        
         try {
-            String url = queue.take();
+            String url = App.queue.take();
 
             List<String> links= crawl(url);
 
             for (String link : links) {
-                queue.add(link);
+                App.queue.add(link);
             }
 
         } catch (InterruptedException | IOException e) {
